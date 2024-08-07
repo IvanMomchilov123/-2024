@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Ivan\\Desktop\\\u043B\u0435\u0442\u0435\u043D \u0441\u0442\u0430\u0436\\Travel\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0E8A901D-2CF1-4BF4-A27E-1316AE009F70}|Travel\\Travel.csproj|c:\\users\\ivan\\desktop\\\u043B\u0435\u0442\u0435\u043D \u0441\u0442\u0430\u0436\\travel\\travel\\travel.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{0E8A901D-2CF1-4BF4-A27E-1316AE009F70}|Travel\\Travel.csproj|solutionrelative:travel\\travel.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Travel.csproj",
+              "DocumentMoniker": "C:\\Users\\Ivan\\Desktop\\\u043B\u0435\u0442\u0435\u043D \u0441\u0442\u0430\u0436\\Travel\\Travel\\Travel.csproj",
+              "RelativeDocumentMoniker": "Travel\\Travel.csproj",
+              "ToolTip": "C:\\Users\\Ivan\\Desktop\\\u043B\u0435\u0442\u0435\u043D \u0441\u0442\u0430\u0436\\Travel\\Travel\\Travel.csproj",
+              "RelativeToolTip": "Travel\\Travel.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-08-07T10:35:44.221Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
