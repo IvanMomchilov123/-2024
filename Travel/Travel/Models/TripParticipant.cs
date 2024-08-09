@@ -1,6 +1,6 @@
 ﻿namespace Travel.Models
 {
-    public class TripUserJoin
+    public class TripParticipant
     {
         public int TripId { get; set; }
         public Trip Trip { get; set; }
