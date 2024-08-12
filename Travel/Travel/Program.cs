@@ -1,4 +1,8 @@
 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Travel.Data;
+
 namespace Travel
 {
     public class Program
@@ -13,6 +17,11 @@ namespace Travel
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<TravelDbContext>(options =>
+            {
+                options.UseSqlServer("Server=DESKTOP-580EIMS;Database=TravelDb;Trusted_Connection=True;TrustServerCertificate=True;");
+            });
 
             var app = builder.Build();
 
