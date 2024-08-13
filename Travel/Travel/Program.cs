@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Travel.Data;
 
@@ -20,7 +21,7 @@ namespace Travel
 
             builder.Services.AddDbContext<TravelDbContext>(options =>
             {
-                options.UseSqlServer("Server=DESKTOP-580EIMS;Database=TravelDb;Trusted_Connection=True;TrustServerCertificate=True;");
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
             var app = builder.Build();
