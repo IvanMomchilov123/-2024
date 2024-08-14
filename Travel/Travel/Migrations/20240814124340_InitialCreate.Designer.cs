@@ -12,7 +12,7 @@ using Travel.Data;
 namespace Travel.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    [Migration("20240814103025_InitialCreate")]
+    [Migration("20240814124340_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Travel.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.7")
+                .HasAnnotation("ProductVersion", "8.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -104,7 +104,7 @@ namespace Travel.Migrations
             modelBuilder.Entity("Travel.Models.Trip", b =>
                 {
                     b.HasOne("Travel.Models.User", "Organizer")
-                        .WithMany("OrganizedTrips")
+                        .WithMany()
                         .HasForeignKey("OrganizerID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -115,13 +115,13 @@ namespace Travel.Migrations
             modelBuilder.Entity("Travel.Models.TripParticipant", b =>
                 {
                     b.HasOne("Travel.Models.Trip", "Trip")
-                        .WithMany("TripParticipants")
+                        .WithMany()
                         .HasForeignKey("TripId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Travel.Models.User", "User")
-                        .WithMany("TripParticipants")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -129,18 +129,6 @@ namespace Travel.Migrations
                     b.Navigation("Trip");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Travel.Models.Trip", b =>
-                {
-                    b.Navigation("TripParticipants");
-                });
-
-            modelBuilder.Entity("Travel.Models.User", b =>
-                {
-                    b.Navigation("OrganizedTrips");
-
-                    b.Navigation("TripParticipants");
                 });
 #pragma warning restore 612, 618
         }

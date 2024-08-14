@@ -8,6 +8,5 @@
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public User Organizer { get; set; }
-        public ICollection<TripParticipant> TripParticipants { get; set; }
     }
 }
