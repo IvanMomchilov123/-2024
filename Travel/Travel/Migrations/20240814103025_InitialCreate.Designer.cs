@@ -12,7 +12,7 @@ using Travel.Data;
 namespace Travel.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    [Migration("20240812085503_InitialCreate")]
+    [Migration("20240814103025_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -55,13 +55,21 @@ namespace Travel.Migrations
 
             modelBuilder.Entity("Travel.Models.TripParticipant", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<int>("TripId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("TripId", "UserId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("TripId");
 
                     b.HasIndex("UserId");
 
@@ -93,21 +101,6 @@ namespace Travel.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("TripUser", b =>
-                {
-                    b.Property<int>("ParticipantsUserID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TripsTripID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ParticipantsUserID", "TripsTripID");
-
-                    b.HasIndex("TripsTripID");
-
-                    b.ToTable("TripUser");
-                });
-
             modelBuilder.Entity("Travel.Models.Trip", b =>
                 {
                     b.HasOne("Travel.Models.User", "Organizer")
@@ -121,36 +114,21 @@ namespace Travel.Migrations
 
             modelBuilder.Entity("Travel.Models.TripParticipant", b =>
                 {
-                    b.HasOne("Travel.Models.Trip", "RelatedTrip")
+                    b.HasOne("Travel.Models.Trip", "Trip")
                         .WithMany("TripParticipants")
                         .HasForeignKey("TripId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Travel.Models.User", "RelatedUser")
+                    b.HasOne("Travel.Models.User", "User")
                         .WithMany("TripParticipants")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("RelatedTrip");
+                    b.Navigation("Trip");
 
-                    b.Navigation("RelatedUser");
-                });
-
-            modelBuilder.Entity("TripUser", b =>
-                {
-                    b.HasOne("Travel.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("ParticipantsUserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Travel.Models.Trip", null)
-                        .WithMany()
-                        .HasForeignKey("TripsTripID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Travel.Models.Trip", b =>

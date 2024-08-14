@@ -52,12 +52,14 @@ namespace Travel.Migrations
                 name: "TripParticipants",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TripId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TripParticipants", x => new { x.TripId, x.UserId });
+                    table.PrimaryKey("PK_TripParticipants", x => x.Id);
                     table.ForeignKey(
                         name: "FK_TripParticipants_Tips_TripId",
                         column: x => x.TripId,
@@ -72,44 +74,20 @@ namespace Travel.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "TripUser",
-                columns: table => new
-                {
-                    ParticipantsUserID = table.Column<int>(type: "int", nullable: false),
-                    TripsTripID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TripUser", x => new { x.ParticipantsUserID, x.TripsTripID });
-                    table.ForeignKey(
-                        name: "FK_TripUser_Tips_TripsTripID",
-                        column: x => x.TripsTripID,
-                        principalTable: "Tips",
-                        principalColumn: "TripID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TripUser_Users_ParticipantsUserID",
-                        column: x => x.ParticipantsUserID,
-                        principalTable: "Users",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Tips_OrganizerID",
                 table: "Tips",
                 column: "OrganizerID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TripParticipants_TripId",
+                table: "TripParticipants",
+                column: "TripId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TripParticipants_UserId",
                 table: "TripParticipants",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TripUser_TripsTripID",
-                table: "TripUser",
-                column: "TripsTripID");
         }
 
         /// <inheritdoc />
@@ -117,9 +95,6 @@ namespace Travel.Migrations
         {
             migrationBuilder.DropTable(
                 name: "TripParticipants");
-
-            migrationBuilder.DropTable(
-                name: "TripUser");
 
             migrationBuilder.DropTable(
                 name: "Tips");
